@@ -34,50 +34,167 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              myHeader(),
+              CategoryList(),
+
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Resep Populer",
+                      style: kTitleTextStyle.copyWith(fontSize: 18),
+                    ),
+                    RecipeCard(
+                      image:
+                          "assets/images/5-resep-bumbu-rendang-daging-sapi-yang-enak-dan-lezat-mudah-dibuat.jpg",
+                      name: "Rendang Sapi",
+                      rating: "4.8",
+                      total: "120+",
+                      time: "5 Jam",
+                    ),
+                    RecipeCard(
+                      image: "assets/images/sate-ayam.jpg",
+                      name: "Sate Ayam",
+                      rating: "4.8",
+                      total: "120+",
+                      time: "5 Jam",
+                    ),
+                    RecipeCard(
+                      image: "assets/images/nasi_bakar_tempe_MAHI-780x440.jpg",
+                      name: "Nasi Bakar Tempa",
+                      rating: "4.8",
+                      total: "120+",
+                      time: "5 Jam",
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RecipeCard extends StatelessWidget {
+  final String image;
+  final String name;
+  final String rating;
+  final String total;
+  final String time;
+  const RecipeCard({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.rating,
+    required this.total,
+    required this.time,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 5, top: 10),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        elevation: 6,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
-            myHeader(),
             Container(
+              height: 125,
               width: double.infinity,
-              margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Kategori",
-                    style: kTitleTextStyle.copyWith(fontSize: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: kTitleTextStyle.copyWith(fontSize: 14),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: starActive,
+                            size: 15,
+                          ),
+                          Icon(
+                            Icons.star,
+                            color: starActive,
+                            size: 15,
+                          ),
+                          Icon(
+                            Icons.star,
+                            color: starActive,
+                            size: 15,
+                          ),
+                          Icon(
+                            Icons.star,
+                            color: starActive,
+                            size: 15,
+                          ),
+                          Icon(
+                            Icons.star,
+                            color: starActive,
+                            size: 15,
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            "$rating ($total)",
+                            style: kSubTextStyle.copyWith(
+                                fontSize: 12, color: Colors.black),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.alarm,
+                            size: 15,
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            time,
+                            style: kSubTextStyle.copyWith(
+                                fontSize: 12, color: Colors.black),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  Wrap(
-                    alignment: WrapAlignment.start,
-                    direction: Axis.horizontal,
-                    spacing: 15,
-                    children: const [
-                      CategoryCard(
-                        image: "assets/icons/meat.svg",
-                        text: "Daging",
-                      ),
-                      CategoryCard(
-                        image: "assets/icons/fruits.svg",
-                        text: "Buah",
-                      ),
-                      CategoryCard(
-                        image: "assets/icons/fish.svg",
-                        text: "Ikan",
-                      ),
-                      CategoryCard(
-                        image: "assets/icons/rice.svg",
-                        text: "Beras",
-                      ),
-                      CategoryCard(
-                        image: "assets/icons/milk.svg",
-                        text: "Susu",
-                      ),
-                      CategoryCard(
-                        image: "assets/icons/cake.svg",
-                        text: "Kue",
-                      ),
+                  Column(
+                    children: [
+                      Icon(Icons.bookmark_outline),
+                      SizedBox(height: 4),
+                      ImageCircle(
+                          image_width: 30,
+                          image_height: 30,
+                          imageUrl: "assets/images/profile.jpg")
                     ],
                   )
                 ],
@@ -85,6 +202,60 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CategoryList extends StatelessWidget {
+  const CategoryList({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Kategori",
+            style: kTitleTextStyle.copyWith(fontSize: 18),
+          ),
+          Wrap(
+            alignment: WrapAlignment.start,
+            direction: Axis.horizontal,
+            spacing: 15,
+            children: const [
+              CategoryCard(
+                image: "assets/icons/meat.svg",
+                text: "Daging",
+              ),
+              CategoryCard(
+                image: "assets/icons/fruits.svg",
+                text: "Buah",
+              ),
+              CategoryCard(
+                image: "assets/icons/fish.svg",
+                text: "Ikan",
+              ),
+              CategoryCard(
+                image: "assets/icons/rice.svg",
+                text: "Beras",
+              ),
+              CategoryCard(
+                image: "assets/icons/milk.svg",
+                text: "Susu",
+              ),
+              CategoryCard(
+                image: "assets/icons/cake.svg",
+                text: "Kue",
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
