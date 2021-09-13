@@ -10,7 +10,6 @@ import 'package:recipe_app_ui/widgets/recipe_card.dart';
 import './widgets/image_circle.dart';
 import './widgets/category_card.dart';
 
-var _currentIndex;
 void main() {
   runApp(const MyApp());
 }
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: const TextTheme(body1: TextStyle(color: kBodyTextColor)),
       ),
-      home: SearchList(),
+      home: HomePage(),
     );
   }
 }
