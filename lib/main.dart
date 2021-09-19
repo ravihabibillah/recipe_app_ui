@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recipe_app_ui/constant.dart';
+import 'package:recipe_app_ui/recipe_detail.dart';
 import 'package:recipe_app_ui/search_list.dart';
 import 'package:recipe_app_ui/widgets/category_list.dart';
 import 'package:recipe_app_ui/widgets/header.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: const TextTheme(body1: TextStyle(color: kBodyTextColor)),
       ),
-      home: HomePage(),
+      home: RecipeDetail(),
     );
   }
 }
