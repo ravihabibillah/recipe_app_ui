@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app_ui/search_list.dart';
 
 import 'image_circle.dart';
 
@@ -34,7 +35,19 @@ class myHeader extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Icon(Icons.search),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SearchList();
+                  },
+                ),
+              );
+            },
+            child: Icon(Icons.search),
+          ),
           SizedBox(width: 10),
           Icon(Icons.light_mode)
         ],
