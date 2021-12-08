@@ -7,7 +7,7 @@ Color starActive = Color(0xFFFDBC2E);
 Color menuPrimary = Color(0xFFFDBC2E);
 const navbarColor = Color(0xFFF57B51);
 const kTextLightColor = Color(0xFF959595);
-final kShadowColor = const Color(0xFF959595);
+final kShadowColor = Color(0xFF959595);
 
 const kHeadingTextStyle = TextStyle(
   fontSize: 22,
