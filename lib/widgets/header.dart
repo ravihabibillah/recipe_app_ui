@@ -21,35 +21,21 @@ class myHeader extends StatelessWidget {
                 image_height: 40,
                 image_width: 40,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
-              Text(
-                "Hai, Rafi Aulia",
+              const Text(
+                "Hai, M Ravi Habibillah",
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_right,
                 size: 30,
               )
             ],
           ),
-          Spacer(),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return SearchList();
-                  },
-                ),
-              );
-            },
-            child: Icon(Icons.search),
-          ),
-          SizedBox(width: 10),
-          Icon(Icons.light_mode)
+          const Spacer(),
         ],
       ),
     );
